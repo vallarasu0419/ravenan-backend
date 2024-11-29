@@ -97,7 +97,8 @@ UserService.loginUserService = (input, output) => {
 
       const token = jwt.sign(
         { userId: user.userId, email: user.email },
-        Environment.JWT_SECRET_KEY
+        Environment.JWT_SECRET_KEY,
+        { expiresIn: "240m" }
       );
 
       const updateQuery = `UPDATE UserCredential SET token = ? WHERE email = ?`;
